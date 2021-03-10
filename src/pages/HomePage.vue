@@ -1,5 +1,5 @@
 <template>
-  <div class="home container">
+  <div class="home container text-center">
     <div class="row mt-5">
       <div class="col">
         <h1>Welcome to Gregslist</h1>
