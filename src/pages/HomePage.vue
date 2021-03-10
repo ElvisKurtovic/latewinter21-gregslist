@@ -8,8 +8,8 @@
     <div class="row mt-5">
       <div class="col">
       <button class="btn btn-dark">Cars</button>
-      <button class="btn btn-success">Houses</button>
-      <button class="btn btn-primary">Jobs</button>
+      <button class="btn btn-success ml-1">Houses</button>
+      <button class="btn btn-primary ml-1">Jobs</button>
       </div>
     </div>
   </div>
