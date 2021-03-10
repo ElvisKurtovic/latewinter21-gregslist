@@ -21,6 +21,7 @@ import { reactive } from 'vue'
 export default {
   name: 'Home',
   setup() {
+    // eslint-disable-next-line no-unused-vars
     const state = reactive({})
     return {
       methodName() {
