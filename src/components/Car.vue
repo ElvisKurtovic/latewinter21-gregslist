@@ -5,8 +5,8 @@
       <div class="card car">
         <img class="card-img-top" :src="car.imgUrl" alt="car">
         <div class="card-body">
-          <h4 class="card-title">{{car.make}} | {{car.model}}</h4>
-          <p class="card-text">{{car.year}} | {{car.price}}</p>
+          <h4 class="card-title">Make: {{car.make}} | Model: {{car.model}}</h4>
+          <p class="card-text">Year: {{car.year}} | Price: {{car.price}}</p>
         </div>
       </div>
     </router-link>
