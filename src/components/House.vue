@@ -5,8 +5,9 @@
       <div class="card house">
         <img class="card-img-top" :src="house.imgUrl" alt="house">
         <div class="card-body">
-          <h4 class="card-title">{{house.bedrooms}} | {{house.bathrooms}}</h4>
-          <p class="card-text">{{house.year}} | {{house.price}}</p>
+          <h4 class="card-title">Bedrooms: {{house.bedrooms}} | Bathrooms: {{house.bathrooms}} | Levels: {{house.levels}}</h4>
+          <p class="card-text">Year: {{house.year}} | Price: {{house.price}}</p>
+          <p class="card-text">Description: {{house.description}}</p>
         </div>
       </div>
     </router-link>

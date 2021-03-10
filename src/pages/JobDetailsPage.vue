@@ -1,63 +1,52 @@
 <template>
-  <div class="house-details">
+  <div class="job-details">
     <h1 class="text-center">Details Page</h1>
-    <!-- {{ state.house }} -->
-    <img class="card-img-top" :src="state.house.imgUrl" alt="house">
+    <!-- {{ state.job }} -->
+    <img class="card-img-top" src="https://media.tenor.com/images/84312b3be47d6372647ff7b113f86f1d/tenor.png" alt="job">
 
-    <form class="form-inline" onsubmit="app.housesController.createHouse(event)">
+    <form class="form-inline" onsubmit="app.jobsController.createJob(event)">
       <div class="form-group">
         <input
           type="text"
-          name="bedrooms"
-          id="bedrooms"
+          name="jobTitle"
+          id="jobTitle"
           class="form-control"
-          placeholder="Bedrooms"
+          placeholder="Job Title"
           aria-describedby="helpId"
-          v-model="state.house.bedrooms"
+          v-model="state.job.jobTitle"
         />
       </div>
       <div class="form-group">
         <input
           type="text"
-          name="bathrooms"
-          id="bathrooms"
+          name="company"
+          id="company"
           class="form-control"
-          placeholder="Bathrooms"
+          placeholder="Company"
           aria-describedby="helpId"
-          v-model="state.house.bathrooms"
-        />
-      </div>
-      <div class="form-group">
-        <input
-          type="text"
-          name="levels"
-          id="levels"
-          class="form-control"
-          placeholder="Levels"
-          aria-describedby="helpId"
-          v-model="state.house.levels"
+          v-model="state.job.company"
         />
       </div>
       <div class="form-group">
         <input
           type="number"
-          name="year"
-          id="year"
+          name="hours"
+          id="hours"
           class="form-control"
-          placeholder="Year"
+          placeholder="Hours"
           aria-describedby="helpId"
-          v-model="state.house.year"
+          v-model="state.job.hours"
         />
       </div>
       <div class="form-group">
         <input
           type="number"
-          name="price"
-          id="price"
+          name="rate"
+          id="rate"
           class="form-control"
-          placeholder="Price"
+          placeholder="Rate"
           aria-describedby="helpId"
-          v-model="state.house.price"
+          v-model="state.job.rate"
         />
       </div>
       <div class="form-group">
@@ -68,10 +57,10 @@
           class="form-control"
           placeholder="Description"
           aria-describedby="helpId"
-          v-model="state.house.description"
+          v-model="state.job.description"
         />
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <input
           type="text"
           name="imgUrl"
@@ -79,13 +68,13 @@
           class="form-control"
           placeholder="ImgUrl"
           aria-describedby="helpId"
-          v-model="state.house.imgUrl"
+          v-model="state.job.imgUrl"
         />
-      </div>
+      </div> -->
       <button class="btn btn-info" type="submit">Create</button>
     </form>
-    <button type="button" class="btn btn-outline-danger" @click="deleteHouse">
-      Delete House
+    <button type="button" class="btn btn-outline-danger" @click="deleteJob">
+      Delete Job
     </button>
   </div>
 </template>
@@ -93,25 +82,25 @@
 <script>
 import { onMounted, reactive, computed } from 'vue'
 import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router'
-import { housesService } from '../services/HousesService'
+import { jobsService } from '../services/JobsService'
 import { AppState } from '../Appstate'
 
 export default {
-  name: 'HouseDetails',
+  name: 'JobDetails',
   setup() {
     const route = useRoute()
     const router = useRouter()
     const state = reactive({
-      house: computed(() => AppState.activeHouse)
+      job: computed(() => AppState.activeJob)
     })
 
     onMounted(() => {
-      housesService.getHouse(route.params.id)
+      jobsService.getJob(route.params.id)
     })
 
     onBeforeRouteLeave((to, from, next) => {
       if (window.confirm('You sure bro?')) {
-        AppState.activeHouse = {}
+        AppState.activeJob = {}
         next()
       }
     })
@@ -119,9 +108,9 @@ export default {
     return {
       route,
       state,
-      async deleteHouse() {
-        await housesService.deleteHouse(state.house._id)
-        router.push({ name: 'Houses' })
+      async deleteJob() {
+        await jobsService.deleteJob(state.job._id)
+        router.push({ name: 'Jobs' })
       }
     }
   },

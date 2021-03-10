@@ -1,65 +1,54 @@
 <template>
-  <div class="houses-page container">
+  <div class="jobs-page container">
     <div class="row">
       <div class="col text-center">
-        <h1>Houses</h1>
+        <h1>Jobs</h1>
       </div>
     </div>
     <div class="row my-3">
-      <form class="form-inline" @submit.prevent="createHouse">
+      <form class="form-inline" @submit.prevent="createJob">
         <div class="form-group">
           <input
             type="text"
-            name="bedrooms"
-            id="bedrooms"
+            name="jobTitle"
+            id="jobTitle"
             class="form-control"
-            placeholder="Bedrooms"
+            placeholder="Job Title"
             aria-describedby="helpId"
-            v-model="state.newHouse.bedrooms"
+            v-model="state.newJob.jobTitle"
           />
         </div>
         <div class="form-group">
           <input
             type="text"
-            name="bathrooms"
-            id="bathrooms"
+            name="company"
+            id="company"
             class="form-control"
-            placeholder="Bathrooms"
+            placeholder="Company"
             aria-describedby="helpId"
-            v-model="state.newHouse.bathrooms"
-          />
-        </div>
-        <div class="form-group">
-          <input
-            type="text"
-            name="levels"
-            id="levels"
-            class="form-control"
-            placeholder="Levels"
-            aria-describedby="helpId"
-            v-model="state.newHouse.levels"
+            v-model="state.newJob.company"
           />
         </div>
         <div class="form-group">
           <input
             type="number"
-            name="year"
-            id="year"
+            name="hours"
+            id="hours"
             class="form-control"
-            placeholder="Year"
+            placeholder="Hours"
             aria-describedby="helpId"
-            v-model="state.newHouse.year"
+            v-model="state.newJob.hours"
           />
         </div>
         <div class="form-group">
           <input
             type="number"
-            name="price"
-            id="price"
+            name="rate"
+            id="rate"
             class="form-control"
-            placeholder="Price"
+            placeholder="Rate"
             aria-describedby="helpId"
-            v-model="state.newHouse.price"
+            v-model="state.newJob.rate"
           />
         </div>
         <div class="form-group">
@@ -70,10 +59,10 @@
             class="form-control"
             placeholder="Description"
             aria-describedby="helpId"
-            v-model="state.newHouse.description"
+            v-model="state.newJob.description"
           />
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <input
             type="text"
             name="imgUrl"
@@ -81,14 +70,14 @@
             class="form-control"
             placeholder="ImgUrl"
             aria-describedby="helpId"
-            v-model="state.newHouse.imgUrl"
+            v-model="state.newJob.imgUrl"
           />
-        </div>
+        </div> -->
         <button class="btn btn-info" type="submit">Create</button>
       </form>
     </div>
     <div class="row">
-      <House v-for="houseData in state.houses" :key="houseData._id" :house="houseData" />
+      <Job v-for="jobData in state.jobs" :key="jobData._id" :job="jobData" />
     </div>
   </div>
 </template>
@@ -96,34 +85,34 @@
 <script>
 import { reactive, computed, onMounted } from 'vue'
 import { AppState } from '../Appstate'
-import { housesService } from '../services/HousesService'
-import House from '../components/House'
+import { jobsService } from '../services/JobsService'
+import Job from '../components/Job'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: 'HousesPage',
+  name: 'JobsPage',
   setup() {
     const router = useRouter()
     const state = reactive({
-      houses: computed(() => AppState.houses),
-      newHouse: {}
+      jobs: computed(() => AppState.jobs),
+      newJob: {}
     })
     // NOTE this runs when the page/component is first 'mounted' to the dom
     onMounted(() => {
-      housesService.getHouses()
+      jobsService.getJobs()
     })
 
     return {
       state,
-      async createHouse() {
-        const houseId = await housesService.createHouse(state.newHouse)
-        router.push({ name: 'HouseDetails', params: { id: houseId } })
-        state.newHouse = {}
+      async createJob() {
+        const jobId = await jobsService.createJob(state.newJob)
+        router.push({ name: 'JobDetails', params: { id: jobId } })
+        state.newJob = {}
       }
     }
   },
   components: {
-    House
+    Job
   }
 }
 </script>

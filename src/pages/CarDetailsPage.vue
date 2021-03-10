@@ -1,10 +1,8 @@
 <template>
   <div class="car-details">
-    <h1>WElcome to the details page</h1>
-    {{ state.car }}
-    <button type="button" class="btn btn-outline-danger" @click="deleteCar">
-      Delete Car
-    </button>
+    <h1 class="text-center">Details Page</h1>
+    <!-- {{ state.car }} -->
+    <img class="card-img-top" :src="state.car.imgUrl" alt="car">
 
     <form class="form-inline" onsubmit="app.carsController.createCar(event)">
       <div class="form-group">
@@ -75,6 +73,9 @@
       </div>
       <button class="btn btn-info" type="submit">Create</button>
     </form>
+    <button type="button" class="btn btn-outline-danger" @click="deleteCar">
+      Delete Car
+    </button>
   </div>
 </template>
 
