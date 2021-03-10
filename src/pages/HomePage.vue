@@ -7,9 +7,9 @@
     </div>
     <div class="row mt-5">
       <div class="col">
-      <button>Cars</button>
-      <button>Houses</button>
-      <button>Jobs</button>
+      <button class="btn btn-dark">Cars</button>
+      <button class="btn btn-success">Houses</button>
+      <button class="btn btn-primary">Jobs</button>
       </div>
     </div>
   </div>
